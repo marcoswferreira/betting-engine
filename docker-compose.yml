@@ -54,6 +54,7 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/betting_engine_db
       - SPRING_DATASOURCE_USERNAME=betting_user
       - SPRING_DATASOURCE_PASSWORD=betting_password
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
       - HAZELCAST_NETWORK_CLUSTER_MEMBERS=hazelcast:5701
     depends_on:
       postgres:

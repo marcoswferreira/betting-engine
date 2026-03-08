@@ -2,7 +2,7 @@ spring:
   application:
     name: settlement-engine
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
     consumer:
       group-id: settlement-group
       auto-offset-reset: earliest
@@ -11,9 +11,9 @@ spring:
       properties:
         spring.json.trusted.packages: "*"
   datasource:
-    url: jdbc:postgresql://localhost:5432/betting_engine_db
-    username: betting_user
-    password: betting_password
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/betting_engine_db}
+    username: ${SPRING_DATASOURCE_USERNAME:betting_user}
+    password: ${SPRING_DATASOURCE_PASSWORD:betting_password}
     hikari:
       maximum-pool-size: 20
 
