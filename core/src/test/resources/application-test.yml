@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    # Testcontainers dynamically injects this
+    url: jdbc:tc:postgresql:16-alpine:///betting_test
+    username: test
+    password: test
+    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+
+  hazelcast:
+    # Explicitly disable client
+    config: "classpath:hazelcast-test.yaml"
+
+app:
+  jwt:
+    # "mocksecretkeyfortestingpurposesthatmustbelongenoughforhs256" without hyphens in base64:
+    secret: "bW9ja3NlY3JldGtleWZvcnRlc3RpbmdwdXJwb3Nlc3RoYXRtdXN0YmVsb25nZW5vdWdoZm9yaHMyNTY="
+    expiration-ms: 3600000

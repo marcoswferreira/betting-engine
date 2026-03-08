@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: settlement-engine
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: settlement-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+  datasource:
+    url: jdbc:postgresql://localhost:5432/betting_engine_db
+    username: betting_user
+    password: betting_password
+    hikari:
+      maximum-pool-size: 20
+
+logging:
+  level:
+    com.betting: INFO
