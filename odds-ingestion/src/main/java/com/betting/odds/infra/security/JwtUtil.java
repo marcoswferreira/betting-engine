@@ -1,4 +1,4 @@
-package com.betting.core.infra.security;
+package com.betting.odds.infra.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
@@ -14,10 +14,6 @@ import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.UUID;
 
-/**
- * JWT utility that issues and validates tokens carrying a {@code tenant_id}
- * claim.
- */
 @Component
 public class JwtUtil {
 
@@ -33,42 +29,14 @@ public class JwtUtil {
         this.expirationMs = expirationMs;
     }
 
-    /**
-     * Issues a JWT embedding the {@code tenantId} as a custom claim.
-     *
-     * @param subject  typically the userId (for {@code sub} claim)
-     * @param tenantId the tenant UUID
-     * @return signed JWT string
-     */
-    public String generateToken(String subject, UUID tenantId) {
-        return Jwts.builder()
-                .subject(subject)
-                .claim("tenant_id", tenantId.toString())
-                .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis() + expirationMs))
-                .signWith(secretKey)
-                .compact();
-    }
-
-    /**
-     * Extracts the {@code tenant_id} claim from a token.
-     *
-     * @return tenant ID string, or null if absent/invalid
-     */
     public String extractTenantId(String token) {
         return parseClaims(token).get("tenant_id", String.class);
     }
 
-    /**
-     * Extracts the subject ({@code sub}) claim from a token.
-     */
     public String extractSubject(String token) {
         return parseClaims(token).getSubject();
     }
 
-    /**
-     * Returns {@code true} if the token is structurally valid and not expired.
-     */
     public boolean validateToken(String token) {
         try {
             parseClaims(token);
