@@ -1,7 +1,7 @@
 package com.betting.core.service;
 
 import com.betting.core.domain.Bet;
-import com.betting.core.domain.MatchOdds;
+import com.betting.odds.domain.MatchOdds;
 import com.betting.core.domain.Wallet;
 import com.betting.core.dto.BetRequest;
 import com.betting.core.infra.tenant.TenantContext;

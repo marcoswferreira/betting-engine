@@ -1,4 +1,4 @@
-package com.betting.settlement.dto;
+package com.betting.common.dto;
 
 import java.util.UUID;
 

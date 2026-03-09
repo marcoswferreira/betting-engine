@@ -1,6 +1,6 @@
 package com.betting.settlement.service;
 
-import com.betting.settlement.dto.MatchFinishedEvent;
+import com.betting.common.dto.MatchFinishedEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -18,7 +18,7 @@ public class SettlementService {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    @KafkaListener(topics = "match-finished", groupId = "settlement-group")
+    @KafkaListener(topics = "match-finished", groupId = "settlement-group-v2")
     @Transactional
     public void handleMatchFinished(MatchFinishedEvent event) {
         log.info("Received Match Finished Event for Match: {} with Outcome: {}", 
@@ -45,7 +45,7 @@ public class SettlementService {
                 UPDATE wallet w
                 SET balance = w.balance + (b.stake * b.placed_odds)
                 FROM bet b
-                WHERE b.wallet_id = w.id
+                WHERE b.user_id = w.user_id
                   AND b.match_id = ?
                   AND b.prediction = ?
                   AND b.status = 'WON'

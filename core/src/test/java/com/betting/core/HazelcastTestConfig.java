@@ -1,6 +1,6 @@
 package com.betting.core;
 
-import com.betting.core.domain.MatchOdds;
+import com.betting.odds.domain.MatchOdds;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
 import org.springframework.boot.test.context.TestConfiguration;

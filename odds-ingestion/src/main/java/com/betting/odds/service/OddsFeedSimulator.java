@@ -28,7 +28,7 @@ public class OddsFeedSimulator {
     private static final String ODDS_TOPIC = "live-odds";
     private static final String HAZELCAST_MAP_NAME = "match-odds-map";
 
-    private final KafkaTemplate<String, MatchOdds> kafkaTemplate;
+    private final KafkaTemplate<String, Object> kafkaTemplate;
     private final IMap<UUID, MatchOdds> oddsCache;
     private final Random random = new Random();
 
@@ -38,7 +38,7 @@ public class OddsFeedSimulator {
             UUID.fromString("22222222-2222-2222-2222-222222222222")
     );
 
-    public OddsFeedSimulator(KafkaTemplate<String, MatchOdds> kafkaTemplate, HazelcastInstance hazelcastInstance) {
+    public OddsFeedSimulator(KafkaTemplate<String, Object> kafkaTemplate, HazelcastInstance hazelcastInstance) {
         this.kafkaTemplate = kafkaTemplate;
         this.oddsCache = hazelcastInstance.getMap(HAZELCAST_MAP_NAME);
     }

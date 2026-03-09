@@ -1,4 +1,4 @@
-package com.betting.core.domain;
+package com.betting.odds.domain;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
